@@ -1,8 +1,33 @@
 {
-    "devDependencies": {
-        "jshint": "^2.6.0"
-    },
-    "scripts": {
-        "test": "jshint ."
-    }
+  "name": "paperwork-simulator",
+  "license": "Creative Commons BY-NC-SA License 3.0",
+  "version": "1.0.0",
+  "repository": "https://github.com/baystation12/paperwork",
+  "bugs": "https://github.com/baystation12/paperwork/issues",
+  "private": true,
+  "contributors": [
+    "Persona E (https://github.com/dibasic)",
+    "Climax708 (https://github.com/soryy708)",
+    "AlabasterTempest",
+    "Atseuki",
+    "Boznar",
+    "Cakey",
+    "CrimsonShrike",
+    "DisreputableSquid",
+    "dryerlint",
+    "Eonoc",
+    "Kyos",
+    "Legodude9",
+    "masterrbc",
+    "Novus Luna",
+    "Piccione",
+    "Randall Hynes",
+    "sabiram",
+    "SierraKomodo",
+    "ThatOneGuy",
+    "YourDaddy117",
+    "Za_Redman",
+    "Lorwp",
+    "spookerton <spkrtn@pm.me> (https://github.com/spookerton)"
+  ]
 }

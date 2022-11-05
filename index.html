@@ -1,201 +1,148 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>SS13 Paperwork Simulator</title>
-    <meta charset="UTF-8"> 
-    <link rel="shortcut icon" href="favicon.png" />
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-    <script src="script/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-    <script type="text/javascript" src="script/pen.js"></script>
-    <script type="text/javascript" src="script/settings.js"></script>
-    <script type="text/javascript" src="script/credits.js"></script>
-    <script type="text/javascript" src="script/templates.js"></script>
-    <link rel="stylesheet" type="text/css" href="script/jquery-ui-1.12.1.custom/jquery-ui.min.css"/>
-    <link rel="stylesheet" type="text/css" href="style/main.css"/>
-    <link rel="stylesheet" type="text/css" href="style/dark.css"/>
-    <link rel="stylesheet" type="text/css" href="style/solarized.css"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<title>SS13 Paperwork Simulator</title>
+<meta charset="UTF-8">
+<link rel="icon" href="data:,">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+  integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer">
+</script>
+</script>
+<script defer src="script/lib/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<script defer src="script/pen.js"></script>
+<script defer src="script/settings.js"></script>
+<script defer src="script/credits.js"></script>
+<script defer src="script/templates.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+  integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+  crossorigin="anonymous">
+<link rel="stylesheet" href="script/jquery-ui-1.12.1.custom/jquery-ui.min.css"/>
+<link rel="stylesheet" href="style/main.css"/>
+<link rel="stylesheet" href="style/dark.css"/>
+<link rel="stylesheet" href="style/solarized.css"/>
 </head>
 <body>
-    <div id="menu">
-        <legend>PAPERWORK SIMULATOR <span id="year">23XX</span></legend>
-        <div class="controlgroup">
-            <ul id="template"></ul>
-            <button
-                class="control has-tooltip"
-                id="load"
-                title="Load Template"
-            >
-                <i class="fa fa-folder-open"></i>
-            </button>
-            <button
-                class="control has-tooltip"
-                id="save"
-                title="Save As File"
-            >
-                <i class="fa fa-save"></i>
-            </button>
-        </div>
-        <div class="controlgroup">
-            <button
-                class="control has-tooltip"
-                onclick="addBlock('b')"
-                title="Bold (Ctrl+B)"
-            >
-                <i class="fa fa-bold"></i>
-            </button>
-            <button
-                class="control has-tooltip"
-                onclick="addBlock('i')"
-                title="Italic (Ctrl+I)"
-            >
-                <i class="fa fa-italic"></i>
-            </button>
-            <button
-                class="control has-tooltip"
-                onclick="addBlock('u')"
-                title="Underline (Ctrl+U)"
-            >
-                <i class="fa fa-underline"></i>
-            </button>
-            <button
-                class="control has-tooltip"
-                onclick="addBlock('center')"
-                title="Center (Ctrl+E)"
-            >
-                <i class="fa fa-align-center"></i>
-            </button>
-            <button
-                class="control has-tooltip"
-                onclick="addBlock('list')"
-                title="List"
-            >
-                <i class="fa fa-list-ul"></i>
-            </button>
-            <button
-                class="control has-tooltip"
-                onclick="addBlock('table')"
-                title="Table"
-            >
-                <i class="fa fa-table"></i>
-            </button>
-            <button
-                class="control has-tooltip"
-                onclick="addBlock('time')"
-                title="Time"
-            >
-                <i class="fa fa-clock"></i>
-            </button>
-            <button
-                class="control has-tooltip"
-                onclick="addBlock('date')"
-                title="Date"
-            >
-                <i class="fa fa-calendar"></i>
-            </button>
-            <button
-                class="control has-tooltip"
-                onclick="addBlock('sign')"
-                title="Sign"
-            >
-                <i class="fa fa-file-signature"></i>
-            </button>
-            <button
-                class="control has-tooltip"
-                onclick="addBlock('large')"
-                title="Large (Ctrl+Shift+&gt;)"
-            >
-                <span>
-                    <i class="fa fa-font"></i>
-                    <i class="fa fa-chevron-up fa-xs" style="position: absolute; top: 0.25em; left: 66%;"></i>
-                </span>
-            </button>
-            <button
-                class="control has-tooltip"
-                onclick="addBlock('small')"
-                title="Small (Ctrl+Shift+&lt;)"
-            >
-                <span>
-                    <i class="fa fa-font fa-xs"></i>
-                    <i class="fa fa-chevron-down fa-xs" style="position: absolute; top: 0.25em; left: 66%;"></i>
-                </span>
-            </button>
-        </div>
-        <div class="controlgroup dialog-container">
-            <button
-                id='settings-btn'
-                class="control has-tooltip"
-                title="Preview Settings"
-            >
-                <i class="fa fa-cog"></i>
-            </button>
-            <button
-                id='credits-btn'
-                class="control has-tooltip"
-                title="Contributors"
-            >
-                <i class="fa fa-book-open"></i>
-            </button>
-        </div>
-    </div>
-    <div id="warning" class="ui-widget ui-state-highlight ui-corner-all">
-        <i class="fas fa-exclamation-triangle"></i>
-        <span id="warningText"></span>
-    </div>
-    <div id="wrapper">
-        <div class="panel panel-left">
-            <textarea id="input" autofocus spellcheck="false"></textarea>
-        </div>
-        <div class="panel panel-right">
-            <div id="output"></div>
-        </div>
-    </div>
-    <div id="settings-dialog" title="Preview Settings">
-        <div class="input-field">
-            <input id="pen-checkbox" type="checkbox" checked/>
-            <label for="pen-checkbox">Has pen?</label>
-            <i class="fa fa-question-circle has-tooltip" title="shows a 'write...' prompt where applicable"></i>
-        </div>
-        <div class="input-field">
-            <input id="filled-checkbox" type="checkbox"/>
-            <label for="filled-checkbox">Filled fields?</label>
-            <i class="fa fa-question-circle has-tooltip" title="shows sample text in all [field]s"></i>
-        </div>
-        <div class="input-field">
-            <label for="pen-style-select">Pen style</label>
-            <select id="pen-style-select">
-                <option value="Verdana, sans-serif" selected>Pen</option>
-                <option value="Comic Sans MS, sans-serif">Crayon</option>
-                <option value="Segoe Script, sans-serif">Fancy</option>
-            </select>
-            <i class="fa fa-question-circle has-tooltip" title="affects typeface"></i>
-        </div>
-        <div class="input-field">
-            <label for="pen-color-select">Pen color</label>
-            <select id="pen-color-select">
-                <option value="" selected>Black/Default</option>    <!-- Black ink uses default text color -->
-                <option value="#ff0000">Red</option>
-                <option value="#0000ff">Blue</option>
-                <option value="#00ff00">Green</option>
-                <option value="#ff00ff">Pink</option>
-                <option value="#ff9900">Orange</option>
-                <option value="#00ffff">Cyan</option>
-                <option value="" >Invisible</option>                <!-- Invisible ink uses background color -->
-                <option value="#1c1713">Fancy</option>
-            </select>
-            <i class="fa fa-question-circle has-tooltip" title="affects text color"></i>
-        </div>
-        <div class="input-field">
-            <label for="dark-theme-checkbox">UI theme</label>
-            <select id="theme-select">
-                <option value="" selected>Default (light)</option>
-                <option value="solarized-theme">Solarized (dark)</option>
-                <option value="dark-theme">Black (high contrast)</option>
-            </select>
-        </div>
-    </div>
-    <div id="credits-dialog" title="Contributors">
-        <div id="credits"></div>
-    </div>
+<div id="menu">
+  <legend>PAPERWORK SIMULATOR <span id="year">23XX</span></legend>
+  <div class="controlgroup">
+    <ul id="template"></ul>
+    <button id="load" title="Load Template" class="control has-tooltip">
+      <i class="fa fa-folder-open"></i>
+    </button>
+    <button id="save" title="Save As File" class="control has-tooltip">
+      <i class="fa fa-save"></i>
+    </button>
+  </div>
+  <div class="controlgroup">
+    <button title="Bold (Ctrl+B)" class="control has-tooltip" onclick="addBlock('b')">
+      <i class="fa fa-bold"></i>
+    </button>
+    <button title="Italic (Ctrl+I)" class="control has-tooltip" onclick="addBlock('i')">
+      <i class="fa fa-italic"></i>
+    </button>
+    <button title="Underline (Ctrl+U)" class="control has-tooltip" onclick="addBlock('u')">
+      <i class="fa fa-underline"></i>
+    </button>
+    <button title="Center (Ctrl+E)" class="control has-tooltip" onclick="addBlock('center')">
+    <i class="fa fa-align-center"></i>
+    </button>
+    <button title="List" class="control has-tooltip" onclick="addBlock('list')">
+      <i class="fa fa-list-ul"></i>
+    </button>
+    <button title="Table" class="control has-tooltip" onclick="addBlock('table')">
+      <i class="fa fa-table"></i>
+    </button>
+    <button title="Time" class="control has-tooltip" onclick="addBlock('time')">
+      <i class="fa fa-clock"></i>
+    </button>
+    <button title="Date" class="control has-tooltip" onclick="addBlock('date')">
+      <i class="fa fa-calendar"></i>
+    </button>
+    <button title="Sign" class="control has-tooltip" onclick="addBlock('sign')">
+      <i class="fa fa-file-signature"></i>
+    </button>
+    <button title="Large (Ctrl+Shift+&gt;)" class="control has-tooltip" onclick="addBlock('large')">
+      <span>
+        <i class="fa fa-font"></i>
+        <i class="fa fa-chevron-up fa-xs" style="position: absolute; top: 0.25em; left: 66%;"></i>
+      </span>
+    </button>
+    <button title="Small (Ctrl+Shift+&lt;)" class="control has-tooltip" onclick="addBlock('small')">
+      <span>
+        <i class="fa fa-font fa-xs"></i>
+        <i class="fa fa-chevron-down fa-xs" style="position: absolute; top: 0.25em; left: 66%;"></i>
+      </span>
+    </button>
+  </div>
+  <div class="controlgroup dialog-container">
+    <button id='settings-btn' title="Preview Settings" class="control has-tooltip">
+      <i class="fa fa-cog"></i>
+    </button>
+    <button id='credits-btn' title="Contributors" class="control has-tooltip">
+      <i class="fa fa-book-open"></i>
+    </button>
+  </div>
+</div>
+<div id="warning" class="ui-widget ui-state-highlight ui-corner-all">
+  <i class="fas fa-exclamation-triangle"></i>
+  <span id="warningText"></span>
+</div>
+<div id="wrapper">
+  <div class="panel panel-left">
+    <textarea id="input" autofocus spellcheck="false"></textarea>
+  </div>
+  <div class="panel panel-right">
+    <div id="output"></div>
+  </div>
+</div>
+<div id="settings-dialog" title="Preview Settings">
+  <div class="input-field">
+    <input id="pen-checkbox" type="checkbox" checked/>
+    <label for="pen-checkbox">Has pen?</label>
+    <i class="fa fa-question-circle has-tooltip" title="shows a 'write...' prompt where applicable"></i>
+  </div>
+  <div class="input-field">
+    <input id="filled-checkbox" type="checkbox"/>
+    <label for="filled-checkbox">Filled fields?</label>
+    <i class="fa fa-question-circle has-tooltip" title="shows sample text in all [field]s"></i>
+  </div>
+  <div class="input-field">
+    <label for="pen-style-select">Pen style</label>
+    <select id="pen-style-select">
+      <option value="Verdana, sans-serif" selected>Pen</option>
+      <option value="Comic Sans MS, sans-serif">Crayon</option>
+      <option value="Segoe Script, sans-serif">Fancy</option>
+    </select>
+    <i class="fa fa-question-circle has-tooltip" title="affects typeface"></i>
+  </div>
+  <div class="input-field">
+  <label for="pen-color-select">Pen color</label>
+  <select id="pen-color-select">
+    <option value="" selected>Black/Default</option>
+    <option value="#ff0000">Red</option>
+    <option value="#0000ff">Blue</option>
+    <option value="#00ff00">Green</option>
+    <option value="#ff00ff">Pink</option>
+    <option value="#ff9900">Orange</option>
+    <option value="#00ffff">Cyan</option>
+    <option value="">Invisible</option>
+    <option value="#1c1713">Fancy</option>
+  </select>
+  <i class="fa fa-question-circle has-tooltip" title="affects text color"></i>
+  </div>
+  <div class="input-field">
+    <label for="dark-theme-checkbox">UI theme</label>
+    <select id="theme-select">
+      <option value="" selected>Default (light)</option>
+      <option value="solarized-theme">Solarized (dark)</option>
+      <option value="dark-theme">Black (high contrast)</option>
+    </select>
+  </div>
+</div>
+<div id="credits-dialog" title="Contributors">
+  <div id="credits"></div>
+</div>
 </body>
+</html>
