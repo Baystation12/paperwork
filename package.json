@@ -1,7 +1,7 @@
 {
   "name": "paperwork-simulator",
   "license": "Creative Commons BY-NC-SA License 3.0",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "repository": "https://github.com/baystation12/paperwork",
   "bugs": "https://github.com/baystation12/paperwork/issues",
   "private": true,

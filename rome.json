@@ -5,7 +5,7 @@
       "recommended": true
     },
     "ignore": [
-      "script/lib/**/*.js"
+
     ]
   }
 }

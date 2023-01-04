@@ -1,0 +1,6 @@
+# Caddyfile for quick testing.
+
+http://localhost:80 {
+  root docs
+  file_server
+}
